@@ -36,13 +36,13 @@ namespace Cafe
                 .HasOne(e => e.Order)
             .WithOne(e => e.Table)
                 .HasForeignKey<Order>(e => e.TableId)
-                .IsRequired();
+                .IsRequired(false);
 
             modelBuilder.Entity<Table>()
                 .HasOne(e => e.Waiter)
             .WithOne(e => e.Table)
                 .HasForeignKey<Waiter>(e => e.TableId)
-                .IsRequired();
+                .IsRequired(false);
         
             base.OnModelCreating(modelBuilder);
         }
