@@ -1,0 +1,31 @@
+﻿<Window x:Class="Cafe.View.AddNewTableWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Cafe.View"
+        mc:Ignorable="d"
+        Title="AddNewTableWindow" Height="300" Width="300"
+         WindowStyle="None"
+        ResizeMode="NoResize"
+        Background="Transparent"
+        AllowsTransparency="True">
+    <Grid Background="#272537">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Orientation="Vertical"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Width="200">
+            <TextBlock Text="Number" Background="Transparent" Foreground="White"/>
+            <TextBox Text=""/>
+            <TextBlock Text="Status" Background="Transparent" Foreground="White"/>
+            <TextBox Text=""/>
+            <TextBlock Text="Waiter" Background="Transparent" Foreground="White"/>
+            <ComboBox Background="White"/>
+        </StackPanel>
+        <Button Grid.Row="1" Content="Add table" Background="#FFFFFEFE"/>
+    </Grid>
+</Window>

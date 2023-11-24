@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Cafe
+namespace Cafe.View
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -25,19 +25,19 @@ namespace Cafe
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            CafeDbContext dbContext = new CafeDbContext();
+        //private void Button_Click(object sender, RoutedEventArgs e)
+        //{
+        //    CafeDbContext dbContext = new CafeDbContext();
 
-            Cafe.Entities.MenuItem menuItem = new Cafe.Entities.MenuItem()
-            {
-                Name = "Salad",
-                Price = 25
-            };
+        //    Cafe.Entities.MenuItem menuItem = new Cafe.Entities.MenuItem()
+        //    {
+        //        Name = "Salad",
+        //        Price = 25
+        //    };
 
-            dbContext.MenuItems.Add(menuItem);
+        //    dbContext.MenuItems.Add(menuItem);
 
-            dbContext.SaveChanges();
-        }
+        //    dbContext.SaveChanges();
+        //}
     }
 }
