@@ -45,6 +45,25 @@ namespace Cafe
                 .IsRequired(false);
         
             base.OnModelCreating(modelBuilder);
+
+            var table1 = new Table
+            {
+                Status = "Empty"
+
+            };
+
+            var waiter1=new Waiter
+            {
+                Name = "Tom",
+                Surname = "White"
+            };
+
+            waiter1.Table = table1;
+
+            Waiters.Add(waiter1);
+
+            SaveChanges();
         }
+
     }
 }
