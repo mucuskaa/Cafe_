@@ -62,6 +62,15 @@ namespace Cafe.Services
             }).ToList();
         }
 
+        public void DeleteOrderFromDb(int orderId)
+        {
+            var orderToRemove = _dbContext.Orders.FirstOrDefault(item => item.Id == orderId);
 
+            if (orderToRemove != null)
+            {
+                _dbContext.Orders.Remove(orderToRemove);
+                _dbContext.SaveChanges();
+            }
+        }
     }
 }

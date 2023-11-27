@@ -143,5 +143,13 @@ namespace Cafe
             deleteTableWindow.WindowStartupLocation = WindowStartupLocation.CenterOwner;
             deleteTableWindow.ShowDialog();
         }
+
+        private void bDeleteOrder_Click(object sender, RoutedEventArgs e)
+        {
+            DeleteOrderWindow deleteOrderWindow=new DeleteOrderWindow();
+            deleteOrderWindow.Owner = Application.Current.MainWindow;
+            deleteOrderWindow.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+            deleteOrderWindow.ShowDialog();
+        }
     }
 }
