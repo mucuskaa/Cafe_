@@ -46,23 +46,23 @@ namespace Cafe
         
             base.OnModelCreating(modelBuilder);
 
-            var table1 = new Table
-            {
-                Status = "Empty"
+            //var table1 = new Table
+            //{
+            //    Status = "Empty"
 
-            };
+            //};
 
-            var waiter1=new Waiter
-            {
-                Name = "Tom",
-                Surname = "White"
-            };
+            //var waiter1=new Waiter
+            //{
+            //    Name = "Tom",
+            //    Surname = "White"
+            //};
 
-            waiter1.Table = table1;
+            //waiter1.Table = table1;
 
-            Waiters.Add(waiter1);
+            //Waiters.Add(waiter1);
 
-            SaveChanges();
+            //SaveChanges();
         }
 
     }

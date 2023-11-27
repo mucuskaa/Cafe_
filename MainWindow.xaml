@@ -31,11 +31,11 @@
                 <TabItem.Header>
                     <TextBlock Text="Tables" Background="White"/>
                 </TabItem.Header>
-                <DataGrid Name="dgTables" Background="White" BorderBrush="{x:Null}" >
+                <DataGrid Name="dgTables" Background="White" BorderBrush="{x:Null}" AutoGenerateColumns="False"  >
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Number"/>
-                            <DataGridTextColumn Header="Waiter"/>
-                          <DataGridTextColumn Header="Status"/>
+                        <DataGridTextColumn Header="Number" Binding="{Binding Id}" />
+                        <DataGridTextColumn Header="Waiter"  Binding="{Binding WaiterId}" />
+                        <DataGridTextColumn Header="Status"  Binding="{Binding Status}" />
                         </DataGrid.Columns>
                 </DataGrid>
             </TabItem>
@@ -43,10 +43,10 @@
                 <TabItem.Header>
                     <TextBlock Text="Waiters" Background="White"/>
                 </TabItem.Header>
-                <DataGrid Name="dgWaiters" Background="White" BorderBrush="{x:Null}" >
+                <DataGrid Name="dgWaiters" Background="White" BorderBrush="{x:Null}" AutoGenerateColumns="False" >
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Name"/>
-                        <DataGridTextColumn Header="Surname"/>
+                        <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
+                        <DataGridTextColumn Header="Surname" Binding="{Binding Surname}"/>
                             <!--<GridViewColumn Header="Table"/>-->
                         </DataGrid.Columns>
                 </DataGrid>
@@ -65,20 +65,20 @@
                 <TabItem.Header>
                     <TextBlock Text="Menu" Background="White"/>
                 </TabItem.Header>
-                <DataGrid Name="dgItems" Background="White" BorderBrush="{x:Null}" >
+                <DataGrid Name="dgItems" Background="White" BorderBrush="{x:Null}" AutoGenerateColumns="False">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Item"/>
-                        <DataGridTextColumn Header="Price"/>
+                        <DataGridTextColumn Header="Item" Binding="{Binding Name}"/>
+                        <DataGridTextColumn Header="Price" Binding="{Binding Price}"/>
                     </DataGrid.Columns>
                 </DataGrid>
             </TabItem>
         </TabControl>
         <StackPanel Grid.Row="1" Orientation="Horizontal"
                     HorizontalAlignment="Right">
-            <Button Content="New table" Background="#FFFFFCFC" BorderBrush="#272537"/>
-            <Button Content="New waiter" Background="#FFFFFCFC" BorderBrush="#272537"/>
-            <Button Content="New order" Background="#FFFFFCFC" BorderBrush="#272537"/>
-            <Button Content="New menu item" Background="#FFFFFCFC" BorderBrush="#272537"/>
+            <Button x:Name="bNewTable" Content="New table" Background="#FFFFFCFC" BorderBrush="#272537" Command="{Binding OpenAddNewTablenWnd}" Click="bNewTable_Click"/>
+            <Button x:Name="bNewWaiter" Content="New waiter" Background="#FFFFFCFC" BorderBrush="#272537" Command="{Binding OpenAddNewWaiterWnd}" Click="bNewWaiter_Click"/>
+            <Button x:Name="bNewOrder" Content="New order" Background="#FFFFFCFC" BorderBrush="#272537"/>
+            <Button x:Name="bNewMenuItem" Content="New menu item" Background="#FFFFFCFC" BorderBrush="#272537" Command="{Binding OpenAddNewItemWnd}" Click="bNewMenuItem_Click"/>
         </StackPanel>
     </Grid>
 </Window>
