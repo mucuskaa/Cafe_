@@ -23,5 +23,30 @@ namespace Cafe.View
         {
             InitializeComponent();
         }
+
+        private void bAddItem_Click(object sender, RoutedEventArgs e)
+        {
+            string newItemName=tbItemName.Text;
+            string input=tbItemPrice.Text;
+            int newItemPrice;
+
+            bool success = int.TryParse(input, out newItemPrice);
+            //if (!success)
+            //{
+                
+            //}
+
+            CafeDbContext dbContext = new CafeDbContext();
+
+            Cafe.Entities.MenuItem menuItem = new Cafe.Entities.MenuItem()
+            {
+                Name = newItemName,
+                Price = newItemPrice
+            };
+
+            dbContext.MenuItems.Add(menuItem);
+
+            dbContext.SaveChanges();
+        }
     }
 }
