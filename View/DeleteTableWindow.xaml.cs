@@ -16,30 +16,30 @@ using System.Windows.Shapes;
 
 namespace Cafe.View
 {
-    public partial class AddNewTableWindow : Window
+    /// <summary>
+    /// Логика взаимодействия для DeleteTableWindow.xaml
+    /// </summary>
+    public partial class DeleteTableWindow : Window
     {
         private readonly TableService tableService;
-        private TableModel tableModel;
-        public AddNewTableWindow()
+        private List<TableModel>  tableModels;
+        public DeleteTableWindow()
         {
             InitializeComponent();
-            tableService = new TableService();
+            tableService= new TableService();
         }
 
-        private void bAddTable_Click(object sender, RoutedEventArgs e)
+        private void bDeleteTable_Click(object sender, RoutedEventArgs e)
         {
-            string newTableStatus = tbTableStatus.Text;
+            string input = tbTableNumber.Text;
+            int tableId;
 
-            bool success = newTableStatus != null;
+            tableModels=tableService.GetAllTables();
+
+            bool success = int.TryParse(input, out tableId) && tableModels.Any(mi => mi.Id == tableId);
             if (success)
             {
-                tableModel = new TableModel()
-                {
-                    Status=newTableStatus,
-                    Order=null,
-                    Waiter=null,
-                };
-                tableService.AddTableToDb(tableModel);
+                tableService.DeleteTableFromDb(tableId);
             }
             else
             {

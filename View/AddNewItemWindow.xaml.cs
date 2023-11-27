@@ -11,6 +11,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Cafe.Services;
+using Cafe.Models;
+
 
 namespace Cafe.View
 {
@@ -19,34 +22,39 @@ namespace Cafe.View
     /// </summary>
     public partial class AddNewItemWindow : Window
     {
+        private readonly MenuItemService menuItemService;
+        private MenuItemModel menuItemModel;
         public AddNewItemWindow()
         {
             InitializeComponent();
+            menuItemService = new MenuItemService();
         }
 
         private void bAddItem_Click(object sender, RoutedEventArgs e)
         {
-            string newItemName=tbItemName.Text;
-            string input=tbItemPrice.Text;
+            string newItemName = tbItemName.Text;
+            string input = tbItemPrice.Text;
             int newItemPrice;
 
-            bool success = int.TryParse(input, out newItemPrice);
-            //if (!success)
-            //{
-                
-            //}
-
-            CafeDbContext dbContext = new CafeDbContext();
-
-            Cafe.Entities.MenuItem menuItem = new Cafe.Entities.MenuItem()
+            bool success = int.TryParse(input, out newItemPrice) && newItemName != null;
+            if (success)
             {
-                Name = newItemName,
-                Price = newItemPrice
-            };
+                menuItemModel = new MenuItemModel()
+                {
+                    Name = newItemName,
+                    Price = newItemPrice,
+                };
+                menuItemService.AddItemtoDb(menuItemModel);
+            }
+            else
+            {
+                MessageView messageView = new MessageView("Incorrect input");
+                messageView.Owner = Application.Current.MainWindow;
+                messageView.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+                messageView.ShowDialog();
+            }
 
-            dbContext.MenuItems.Add(menuItem);
 
-            dbContext.SaveChanges();
         }
     }
 }

@@ -12,10 +12,4 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.25" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Compile Update="View\EditItemWindow.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-  </ItemGroup>
-
 </Project>

@@ -18,8 +18,8 @@ namespace Cafe.Entities
         [Required]
         public string Surname { get; set; }
 
-        public int TableId { get; set; }
-        public virtual Table Table { get; set; }   
+        public int? TableId { get; set; }
+        public virtual Table? Table { get; set; }   
         public virtual ICollection<Order>? Orders { get; set; }
     }
 }

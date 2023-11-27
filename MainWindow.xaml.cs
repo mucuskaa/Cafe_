@@ -87,7 +87,7 @@ namespace Cafe
 
         private void LoadTables()
         {
-            tables=tableService.GetAllTables();
+            tables=tableService.GetAllTablesWithWaiters();
         }
 
         private void LoadWaiters()
@@ -105,7 +105,7 @@ namespace Cafe
 
         private void bNewWaiter_Click(object sender, RoutedEventArgs e)
         {
-            AddNewWaiterWindow newWaiterWindow = new AddNewWaiterWindow();
+           AddNewWaiterWindow newWaiterWindow = new AddNewWaiterWindow();
             newWaiterWindow.Owner = Application.Current.MainWindow;
             newWaiterWindow.WindowStartupLocation = WindowStartupLocation.CenterOwner;
             newWaiterWindow.ShowDialog();
@@ -119,22 +119,29 @@ namespace Cafe
             newItemWindow.ShowDialog();
         }
 
-        //private void Button_Click(object sender, RoutedEventArgs e)
-        //{
-        //    CafeDbContext dbContext = new CafeDbContext();
 
-        //    Cafe.Entities.MenuItem menuItem = new Cafe.Entities.MenuItem()
-        //    {
-        //        Name = "Salad",
-        //        Price = 25
-        //    };
+        private void bDeleteMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            DeleteItemWindow deleteItemWindow = new DeleteItemWindow();
+            deleteItemWindow.Owner = Application.Current.MainWindow;
+            deleteItemWindow.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+            deleteItemWindow.ShowDialog();
+        }
 
-        //    dbContext.MenuItems.Add(menuItem);
+        private void bDeleteWaiter_Click(object sender, RoutedEventArgs e)
+        {
+            DeleteWaiterWindow deleteWaiterWindow = new DeleteWaiterWindow();
+            deleteWaiterWindow.Owner = Application.Current.MainWindow;
+            deleteWaiterWindow.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+            deleteWaiterWindow.ShowDialog();
+        }
 
-        //    dbContext.SaveChanges();
-        //}
-
-
-
+        private void bDeleteTable_Click(object sender, RoutedEventArgs e)
+        {
+            DeleteTableWindow deleteTableWindow=new DeleteTableWindow();
+            deleteTableWindow.Owner = Application.Current.MainWindow;
+            deleteTableWindow.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+            deleteTableWindow.ShowDialog();
+        }
     }
 }

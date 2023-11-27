@@ -1,4 +1,4 @@
-﻿using Cafe.Entities;
+﻿
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -12,11 +12,9 @@ namespace Cafe.Models
     {
         public int Id { get; set; }
         public string Status { get; set; }
-        public int? WaiterId { get; set; }
-        public int? OrderId { get; set; }
 
-        //public Waiter? Waiter { get; set; }
+        public WaiterModel? Waiter { get; set; }
 
-        //public Order? Order { get; set; }
+        public OrderModel? Order { get; set; }
     }
 }

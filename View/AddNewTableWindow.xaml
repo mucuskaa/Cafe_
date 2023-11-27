@@ -6,10 +6,8 @@
         xmlns:local="clr-namespace:Cafe.View"
         mc:Ignorable="d"
         Title="AddNewTableWindow" Height="300" Width="300"
-         WindowStyle="None"
         ResizeMode="NoResize"
-        Background="Transparent"
-        AllowsTransparency="True">
+        Background="Transparent">
     <Grid Background="#272537">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -19,13 +17,11 @@
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
                     Width="200">
-            <TextBlock Text="Number" Background="Transparent" Foreground="White"/>
-            <TextBox Text=""/>
             <TextBlock Text="Status" Background="Transparent" Foreground="White"/>
-            <TextBox Text=""/>
+            <TextBox x:Name="tbTableStatus" Text=""/>
             <TextBlock Text="Waiter" Background="Transparent" Foreground="White"/>
-            <ComboBox Background="White"/>
+            <ComboBox x:Name="cbWaiters" Background="White"/>
         </StackPanel>
-        <Button Grid.Row="1" Content="Add table" Background="#FFFFFEFE"/>
+        <Button x:Name="bAddTable" Grid.Row="1" Content="Add table" Background="#FFFFFEFE"/>
     </Grid>
 </Window>

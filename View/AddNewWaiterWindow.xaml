@@ -6,10 +6,8 @@
         xmlns:local="clr-namespace:Cafe.View"
         mc:Ignorable="d"
         Title="AddNewWaiterWindow" Height="300" Width="300"
-         WindowStyle="None"
         ResizeMode="NoResize"
-        Background="Transparent"
-        AllowsTransparency="True">
+        Background="Transparent">
     <Grid Background="#272537">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -20,10 +18,12 @@
                     VerticalAlignment="Center"
                     Width="200">
             <TextBlock Text="Name" Background="Transparent" Foreground="White"/>
-            <TextBox Text=""/>
+            <TextBox x:Name="tbWaiterName" Text=""/>
             <TextBlock Text="Surname" Background="Transparent" Foreground="White"/>
-            <TextBox Text=""/>
+            <TextBox x:Name="tbWaiterSurname" Text=""/>
+            <TextBlock Text="Table number" Background="Transparent" Foreground="White"/>
+            <TextBox x:Name="tbTableNumber" Text=""/>
         </StackPanel>
-        <Button Grid.Row="1" Content="Add waiter" Background="#FFFFFEFE"/>
+        <Button x:Name="bAddWaiter" Grid.Row="1" Content="Add waiter" Background="#FFFFFEFE" Click="bAddWaiter_Click"/>
     </Grid>
 </Window>

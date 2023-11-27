@@ -22,8 +22,13 @@ namespace Cafe.Services
             return orderPositions.Select(op => new OrderPositionModel
             {
                 MenuItemId = op.MenuItemId,
-                OrderId = op.OrderId,
-                Quantity=op.Quantity
+                Order = op.Order == null ? null : new OrderModel
+                {
+                    Id = op.Order.Id,
+                    Date = op.Order.Date,
+
+                },
+                Quantity = op.Quantity
 
             }).ToList();
         }

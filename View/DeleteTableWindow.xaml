@@ -1,29 +1,25 @@
-﻿<Window x:Class="Cafe.View.EditWaiterWindow"
+﻿<Window x:Class="Cafe.View.DeleteTableWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Cafe.View"
         mc:Ignorable="d"
-        Title="EditWaiterWindow"  Height="300" Width="300"
-         WindowStyle="None"
+        Title="DeleteTableWindow" Height="100" Width="200"
         ResizeMode="NoResize"
-        Background="Transparent"
-        AllowsTransparency="True">
+        Background="Transparent">
     <Grid Background="#272537">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="50"/>
+            <RowDefinition Height="25"/>
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Orientation="Vertical"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
-                    Width="200">
-            <TextBlock Text="New name" Background="Transparent" Foreground="White"/>
-            <TextBox Text=""/>
-            <TextBlock Text="New surname" Background="Transparent" Foreground="White"/>
-            <TextBox Text=""/>
+                    Width="100">
+            <TextBlock Text="Table number" Background="Transparent" Foreground="White"/>
+            <TextBox x:Name="tbTableNumber" Text=""/>
         </StackPanel>
-        <Button Grid.Row="1" Content="Edit waiter" Background="#FFFFFEFE"/>
+        <Button x:Name="bDeleteTable" Grid.Row="1" Content="Delete" Background="White" Click="bDeleteTable_Click" />
     </Grid>
 </Window>

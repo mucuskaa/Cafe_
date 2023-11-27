@@ -15,13 +15,14 @@ using System.Windows.Shapes;
 namespace Cafe.View
 {
     /// <summary>
-    /// Interaction logic for EditWaiterWindow.xaml
+    /// Логика взаимодействия для AddNewOrderWindow.xaml
     /// </summary>
-    public partial class EditWaiterWindow : Window
+    public partial class AddNewOrderWindow : Window
     {
-        public EditWaiterWindow()
+        public AddNewOrderWindow()
         {
             InitializeComponent();
         }
+
     }
 }

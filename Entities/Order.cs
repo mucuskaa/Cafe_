@@ -14,11 +14,11 @@ namespace Cafe.Entities
         public int Id { get; set; }
 
         public DateTime Date { get; set; } = DateTime.Now;
-        public int TableId { get; set; }
-        public int WaiterId { get; set; }
+        public int? TableId { get; set; }
+        public int? WaiterId { get; set; }
 
-        public virtual Table Table { get; set; }
+        public virtual Table? Table { get; set; }
 
-        public virtual Waiter Waiter { get; set; }
+        public virtual Waiter? Waiter { get; set; }
     }
 }

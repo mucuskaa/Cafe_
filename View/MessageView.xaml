@@ -6,21 +6,19 @@
         xmlns:local="clr-namespace:Cafe.View"
         mc:Ignorable="d"
         Title="MessageView" Height="100" Width="200"
-         WindowStyle="None"
         ResizeMode="NoResize"
-        Background="Transparent"
-        AllowsTransparency="True">
+        Background="Transparent">
     <Grid Background="#272537">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="25"/>
         </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0"
+        <TextBlock x:Name="MessageText" Grid.Row="0"
                    HorizontalAlignment="Center"
                    VerticalAlignment="Center"
                    TextWrapping="Wrap"
             Background="Transparent" 
             Foreground="White"/>
-        <Button Grid.Row="1" Content="OK" Background="White"/>
+        <Button x:Name="bCloseWindow" Grid.Row="1" Content="OK" Background="White" Click="bCloseWindow_Click"/>
     </Grid>
 </Window>

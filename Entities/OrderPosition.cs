@@ -17,7 +17,7 @@ namespace Cafe.Entities
         [Required]
         public int Quantity { get; set; }
 
-        public  virtual Order Order { get; set; }
+        public virtual Order? Order { get; set; }
 
     }
 }

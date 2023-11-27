@@ -23,8 +23,19 @@ namespace Cafe.Services
             {
                 Date = o.Date,
                 Id = o.Id,
-                TableId = o.TableId,
-                WaiterId = o.WaiterId
+                Waiter=o.Waiter == null ? null : new WaiterModel
+                {
+                    Name = o.Waiter.Name,
+                    Surname = o.Waiter.Surname,
+                    
+                },
+                Table=o.Table == null ? null : new TableModel
+                {
+                    Id=o.Table.Id,
+                    Status=o.Table.Status,
+                    
+                },
+
             }).ToList();
         }
 
@@ -36,8 +47,18 @@ namespace Cafe.Services
             {
                 Date = o.Date,
                 Id = o.Id,
-                TableId = o.TableId,
-                WaiterId = o.WaiterId
+                Waiter = o.Waiter == null ? null : new WaiterModel
+                {
+                    Name = o.Waiter.Name,
+                    Surname = o.Waiter.Surname,
+
+                },
+                Table = o.Table == null ? null : new TableModel
+                {
+                    Id = o.Table.Id,
+                    Status = o.Table.Status,
+
+                },
             }).ToList();
         }
 

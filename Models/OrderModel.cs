@@ -11,11 +11,9 @@ namespace Cafe.Models
     {
         public int Id { get; set; }
         public DateTime Date { get; set; } = DateTime.Now;
-        public int TableId { get; set; }
-        public int WaiterId { get; set; }
 
-        //public Table Table { get; set; }
+        public TableModel? Table { get; set; }
 
-       // public Waiter Waiter { get; set; }
+        public WaiterModel? Waiter { get; set; }
     }
 }

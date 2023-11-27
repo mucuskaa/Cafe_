@@ -1,4 +1,4 @@
-﻿<Window x:Class="Cafe.View.AddNewItemWindow"
+﻿<Window x:Class="Cafe.View.AddNewOrderWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -17,11 +17,15 @@
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
                     Width="200">
-            <TextBlock Text="Item name" Background="Transparent" Foreground="White"/>
-            <TextBox x:Name="tbItemName" Text=""/>
-            <TextBlock Text="Price" Background="Transparent" Foreground="White"/>
-            <TextBox x:Name="tbItemPrice" Text=""/>
+            <TextBlock Text="Item Id" Background="Transparent" Foreground="White"/>
+            <TextBox x:Name="tbItemId" Text=""/>
+            <TextBlock Text="Quantity" Background="Transparent" Foreground="White"/>
+            <TextBox x:Name="tbItemQuantity" Text=""/>
+            <TextBlock Text="Table number" Background="Transparent" Foreground="White"/>
+            <TextBox x:Name="tbTableNumber" Text=""/>
+            <TextBlock Text="Waiter Id" Background="Transparent" Foreground="White"/>
+            <TextBox x:Name="tbWaiterId" Text=""/>
         </StackPanel>
-        <Button x:Name="bAddItem" Grid.Row="1" Content="Add item" Background="#FFFFFEFE" Click="bAddItem_Click"/>
+        <Button x:Name="bAddOrder" Grid.Row="1" Content="Add item" Background="#FFFFFEFE"/>
     </Grid>
 </Window>

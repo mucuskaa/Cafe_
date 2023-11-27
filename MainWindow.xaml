@@ -6,19 +6,9 @@
         xmlns:local="clr-namespace:Cafe"
         mc:Ignorable="d"
         Title="MainWindow" Height="600" Width="920"
-        WindowStyle="None"
         ResizeMode="NoResize"
-        Background="Transparent"
-        AllowsTransparency="True" Loaded="Window_Loaded">
+        Background="Transparent" Loaded="Window_Loaded">
     <Window.Resources>
-        <!--<Style TargetType="TabControl">
-            <Setter Property="Background" Value="#ADD8E6" />
-        </Style>-->
-
-        <!--<Style x:Key="TabItemStyle" TargetType="TabItem">
-            <Setter Property="Background" Value="#ADD8E6"/>
-            <Setter Property="Foreground" Value="Black"/>
-        </Style>-->
 
     </Window.Resources>
     <Grid Background="#272537" >
@@ -34,7 +24,7 @@
                 <DataGrid Name="dgTables" Background="White" BorderBrush="{x:Null}" AutoGenerateColumns="False"  >
                         <DataGrid.Columns>
                         <DataGridTextColumn Header="Number" Binding="{Binding Id}" />
-                        <DataGridTextColumn Header="Waiter"  Binding="{Binding WaiterId}" />
+                        <DataGridTextColumn Header="Waiter"  Binding="{Binding Waiter}" />
                         <DataGridTextColumn Header="Status"  Binding="{Binding Status}" />
                         </DataGrid.Columns>
                 </DataGrid>
@@ -45,6 +35,7 @@
                 </TabItem.Header>
                 <DataGrid Name="dgWaiters" Background="White" BorderBrush="{x:Null}" AutoGenerateColumns="False" >
                     <DataGrid.Columns>
+                        <DataGridTextColumn Header="Number" Binding="{Binding Id}" />
                         <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
                         <DataGridTextColumn Header="Surname" Binding="{Binding Surname}"/>
                             <!--<GridViewColumn Header="Table"/>-->
@@ -67,6 +58,7 @@
                 </TabItem.Header>
                 <DataGrid Name="dgItems" Background="White" BorderBrush="{x:Null}" AutoGenerateColumns="False">
                     <DataGrid.Columns>
+                        <DataGridTextColumn Header="Number" Binding="{Binding Id}" />
                         <DataGridTextColumn Header="Item" Binding="{Binding Name}"/>
                         <DataGridTextColumn Header="Price" Binding="{Binding Price}"/>
                     </DataGrid.Columns>
@@ -75,10 +67,15 @@
         </TabControl>
         <StackPanel Grid.Row="1" Orientation="Horizontal"
                     HorizontalAlignment="Right">
-            <Button x:Name="bNewTable" Content="New table" Background="#FFFFFCFC" BorderBrush="#272537" Command="{Binding OpenAddNewTablenWnd}" Click="bNewTable_Click"/>
-            <Button x:Name="bNewWaiter" Content="New waiter" Background="#FFFFFCFC" BorderBrush="#272537" Command="{Binding OpenAddNewWaiterWnd}" Click="bNewWaiter_Click"/>
+            <Button x:Name="bNewTable" Content="New table" Background="#FFFFFCFC" BorderBrush="#272537"  Click="bNewTable_Click"/>
+            <Button x:Name="bNewWaiter" Content="New waiter" Background="#FFFFFCFC" BorderBrush="#272537" Click="bNewWaiter_Click"/>
             <Button x:Name="bNewOrder" Content="New order" Background="#FFFFFCFC" BorderBrush="#272537"/>
-            <Button x:Name="bNewMenuItem" Content="New menu item" Background="#FFFFFCFC" BorderBrush="#272537" Command="{Binding OpenAddNewItemWnd}" Click="bNewMenuItem_Click"/>
+            <Button x:Name="bNewMenuItem" Content="New menu item" Background="#FFFFFCFC" BorderBrush="#272537" Click="bNewMenuItem_Click"/>
+
+            <Button x:Name="bDeleteTable" Content="Delete table" Background="#FFFFFCFC" BorderBrush="#272537" Margin="15,0,0,0" Click="bDeleteTable_Click" />
+            <Button x:Name="bDeleteWaiter" Content="Delete waiter" Background="#FFFFFCFC" BorderBrush="#272537" Click="bDeleteWaiter_Click"/>
+            <Button x:Name="bDeleteOrder" Content="Delete order" Background="#FFFFFCFC" BorderBrush="#272537"/>
+            <Button x:Name="bDeleteMenuItem" Content="Delete menu item" Background="#FFFFFCFC" BorderBrush="#272537" Click="bDeleteMenuItem_Click" />
         </StackPanel>
     </Grid>
 </Window>

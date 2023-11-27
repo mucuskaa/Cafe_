@@ -8,11 +8,10 @@ namespace Cafe.Models
 {
     public class WaiterModel
     {
+        public int Id { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
-        public int TableId { get; set; }
-
-        //public Table Table { get; set; }
-        //public ICollection<Order>? Orders { get; set; }
+        public TableModel? Table { get; set; }
+        public List<OrderModel>? Orders { get; set; }
     }
 }
