@@ -1,0 +1,27 @@
+﻿<Window x:Class="Cafe.View.AddNewWaiterWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Cafe.View"
+        mc:Ignorable="d"
+        Title="AddNewWaiterWindow" Height="300" Width="300"
+        ResizeMode="NoResize"
+        Background="Transparent">
+    <Grid Background="#272537">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Orientation="Vertical"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Width="200">
+            <TextBlock Text="Name" Background="Transparent" Foreground="White"/>
+            <TextBox x:Name="tbWaiterName" Text=""/>
+            <TextBlock Text="Surname" Background="Transparent" Foreground="White"/>
+            <TextBox x:Name="tbWaiterSurname" Text=""/>
+        </StackPanel>
+        <Button x:Name="bAddWaiter" Grid.Row="1" Content="Add waiter" Background="#FFFFFEFE" Click="bAddWaiter_Click"/>
+    </Grid>
+</Window>
