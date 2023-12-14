@@ -21,8 +21,6 @@
             <TextBox x:Name="tbWaiterName" Text=""/>
             <TextBlock Text="Surname" Background="Transparent" Foreground="White"/>
             <TextBox x:Name="tbWaiterSurname" Text=""/>
-            <TextBlock Text="Table number" Background="Transparent" Foreground="White"/>
-            <TextBox x:Name="tbTableNumber" Text=""/>
         </StackPanel>
         <Button x:Name="bAddWaiter" Grid.Row="1" Content="Add waiter" Background="#FFFFFEFE" Click="bAddWaiter_Click"/>
     </Grid>

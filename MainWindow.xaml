@@ -16,7 +16,19 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
-        <TabControl Grid.Row="0" >
+        <TabControl Grid.Row="0">
+            <TabItem Name="MenuTab" Background="White" >
+                <TabItem.Header>
+                    <TextBlock Text="Menu" Background="White"/>
+                </TabItem.Header>
+                <DataGrid Name="dgItems" Background="White" BorderBrush="{x:Null}" AutoGenerateColumns="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Number" Binding="{Binding Id}" />
+                        <DataGridTextColumn Header="Item" Binding="{Binding Name}"/>
+                        <DataGridTextColumn Header="Price" Binding="{Binding Price}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </TabItem>
             <TabItem Name="TablesTab" Background="White">
                 <TabItem.Header>
                     <TextBlock Text="Tables" Background="White"/>
@@ -24,7 +36,6 @@
                 <DataGrid Name="dgTables" Background="White" BorderBrush="{x:Null}" AutoGenerateColumns="False"  >
                         <DataGrid.Columns>
                         <DataGridTextColumn Header="Number" Binding="{Binding Id}" />
-                        <DataGridTextColumn Header="Waiter"  Binding="{Binding Waiter}" />
                         <DataGridTextColumn Header="Status"  Binding="{Binding Status}" />
                         </DataGrid.Columns>
                 </DataGrid>
@@ -47,29 +58,17 @@
                     <TextBlock Text="Orders" Background="White"/>
                 </TabItem.Header>
                 <StackPanel>
-                    <DatePicker CalendarClosed="DatePicker_CalendarClosed"></DatePicker>
-                <ComboBox Name="cbOrders" Height="30" Width="120" Margin="35,0,760,0" IsEnabled="False" SelectionChanged="cbOrders_SelectionChanged"/>
-                <TextBlock Name="tbOrder"  Height="200"> </TextBlock>
+                    <DatePicker Name="dpDate" CalendarClosed="DatePicker_CalendarClosed"></DatePicker>
+                    <ComboBox Name="cbOrders" Height="30" Width="120" Margin="35,0,760,0" IsEnabled="False" SelectionChanged="cbOrders_SelectionChanged"/>
+                    <TextBlock Name="tbOrder"  Height="200"></TextBlock>
                 </StackPanel>
-            </TabItem>
-            <TabItem Name="MenuTab" Background="White" >
-                <TabItem.Header>
-                    <TextBlock Text="Menu" Background="White"/>
-                </TabItem.Header>
-                <DataGrid Name="dgItems" Background="White" BorderBrush="{x:Null}" AutoGenerateColumns="False">
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Header="Number" Binding="{Binding Id}" />
-                        <DataGridTextColumn Header="Item" Binding="{Binding Name}"/>
-                        <DataGridTextColumn Header="Price" Binding="{Binding Price}"/>
-                    </DataGrid.Columns>
-                </DataGrid>
             </TabItem>
         </TabControl>
         <StackPanel Grid.Row="1" Orientation="Horizontal"
                     HorizontalAlignment="Right">
             <Button x:Name="bNewTable" Content="New table" Background="#FFFFFCFC" BorderBrush="#272537"  Click="bNewTable_Click"/>
             <Button x:Name="bNewWaiter" Content="New waiter" Background="#FFFFFCFC" BorderBrush="#272537" Click="bNewWaiter_Click"/>
-            <Button x:Name="bNewOrder" Content="New order" Background="#FFFFFCFC" BorderBrush="#272537"/>
+            <Button x:Name="bNewOrder" Content="New order" Background="#FFFFFCFC" BorderBrush="#272537" Click="bNewOrder_Click"/>
             <Button x:Name="bNewMenuItem" Content="New menu item" Background="#FFFFFCFC" BorderBrush="#272537" Click="bNewMenuItem_Click"/>
 
             <Button x:Name="bDeleteTable" Content="Delete table" Background="#FFFFFCFC" BorderBrush="#272537" Margin="15,0,0,0" Click="bDeleteTable_Click" />

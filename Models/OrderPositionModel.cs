@@ -1,20 +1,12 @@
-﻿using Cafe.Entities;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Cafe.Common;
 
 namespace Cafe.Models
 {
     public class OrderPositionModel
     {
-
-        public int MenuItemId { get; set; }
-
         public int Quantity { get; set; }
-
+        public OrderStatus Status { get; set; }
         public OrderModel? Order { get; set; }
+        public MenuItemModel? MenuItem { get; set; }    
     }
 }

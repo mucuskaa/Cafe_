@@ -1,21 +1,11 @@
-﻿using Cafe.Entities;
+﻿using Cafe.Common;
+using Cafe.Entities;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection.Metadata;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Cafe
 {
     public class CafeDbContext : DbContext
     {
-        public CafeDbContext()
-        {
-            Database.EnsureCreated();
-        }
-
         public DbSet<MenuItem> MenuItems { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderPosition> OrderPositions { get; set; }
@@ -24,46 +14,71 @@ namespace Cafe
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Data Source=localhost;Initial Catalog=CafeDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False");
+            optionsBuilder.UseSqlServer("Server=localhost;Database=CafeDB;Trusted_Connection=True;TrustServerCertificate=true;");
             base.OnConfiguring(optionsBuilder);
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<OrderPosition>().HasKey(x => new { x.OrderId, x.MenuItemId });
-        
-            modelBuilder.Entity<Table>()
-                .HasOne(e => e.Order)
-            .WithOne(e => e.Table)
-                .HasForeignKey<Order>(e => e.TableId)
-                .IsRequired(false);
+            var menu1 = new MenuItem
+            {
+                Id = 1,
+                Name = "Barbequ",
+                Price = 22.5
+            };
 
-            modelBuilder.Entity<Table>()
-                .HasOne(e => e.Waiter)
-            .WithOne(e => e.Table)
-                .HasForeignKey<Waiter>(e => e.TableId)
-                .IsRequired(false);
-        
-            base.OnModelCreating(modelBuilder);
+            var menu2 = new MenuItem
+            {
+                Id = 2,
+                Name = "Hinkali",
+                Price = 45
+            };
 
-            //var table1 = new Table
-            //{
-            //    Status = "Empty"
+            var menu3 = new MenuItem
+            {
+                Id = 3,
+                Name = "Soup Harcho",
+                Price = 11.4
+            };
 
-            //};
+            modelBuilder.Entity<MenuItem>().HasData(menu1, menu2, menu3);
 
-            //var waiter1=new Waiter
-            //{
-            //    Name = "Tom",
-            //    Surname = "White"
-            //};
+            var table1 = new Table
+            {
+                Id = 1,
+                Status = TableStatus.Empty
+            };
 
-            //waiter1.Table = table1;
+            var table2 = new Table
+            {
+                Id = 2,
+                Status = TableStatus.Empty
+            };
 
-            //Waiters.Add(waiter1);
+            var table3 = new Table
+            {
+                Id = 3,
+                Status = TableStatus.Empty
+            };
 
-            //SaveChanges();
+            modelBuilder.Entity<Table>().HasData(table1, table2, table3);
+
+
+            var waiter1 = new Waiter
+            {
+                Id = 1,
+                Name = "Tom",
+                Surname = "White"
+            };
+
+            var waiter2 = new Waiter
+            {
+                Id = 2,
+                Name = "Bob",
+                Surname = "Jenkins"
+            };
+
+            modelBuilder.Entity<Waiter>().HasData(waiter1, waiter2);
         }
-
     }
 }

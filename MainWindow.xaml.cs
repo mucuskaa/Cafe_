@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Cafe.Entities;
 using Cafe.Models;
 using Cafe.Services;
 using Cafe.View;
@@ -27,24 +28,24 @@ namespace Cafe
         private readonly TableService tableService;
         private readonly MenuItemService menuItemService;
         private readonly OrderService orderService;
-        private List<OrderModel> orders;
-        private List<TableModel> tables;
+        public List<OrderModel> orders;
+        public List<TableModel> tables;
         private List<MenuItemModel> menuItems;
-        private List<WaiterModel> waiters;
+        public List<WaiterModel> waiters;
 
         public MainWindow()
         {
-            waiterService=new WaiterService();
-            waiters=new List<WaiterModel>();
+            waiterService = new();
+            waiters= [];
 
-            tableService = new TableService();
-            tables = new List<TableModel>();
+            tableService = new();
+            tables = [];
 
-            menuItemService = new MenuItemService();
-            menuItems = new List<MenuItemModel>();
+            menuItemService = new ();
+            menuItems = [];
 
-            orderService = new OrderService();
-            orders = new List<OrderModel>();
+            orderService = new ();
+            orders = [];
 
             InitializeComponent();
         }
@@ -52,47 +53,70 @@ namespace Cafe
         private void DatePicker_CalendarClosed(object sender, RoutedEventArgs e)
         {
             cbOrders.IsEnabled = true;
+
+            if (dpDate.SelectedDate.HasValue)
+            {
+                orders = orderService.GetOredersByDate(dpDate.SelectedDate.Value);
+                cbOrders.ItemsSource = null;
+                cbOrders.ItemsSource = orders.Select(o => o.Id);  
+            }
         }
 
         private void cbOrders_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            tbOrder.Text = String.Empty;
             var list = sender as ComboBox;
             int index = list.SelectedIndex;
             OrderModel currentOrder = orders[index];
 
-            tbOrder.Text=currentOrder.Id.ToString();
+            if (currentOrder == null) return; 
+
+            foreach (OrderPositionModel op in currentOrder.Positions)
+            {
+                tbOrder.Text += $"Dish - {op.MenuItem.Name}\n";
+                tbOrder.Text += $"Quantity - {op.Quantity}\n";
+                tbOrder.Text += new string('-', 50) + '\n';
+            }
+            
+            tbOrder.Text += $"Total {GetTotalPrice(currentOrder)}";
         }
+
+        private double GetTotalPrice(OrderModel order) => order.Positions.Sum(p => p.MenuItem.Price * p.Quantity);
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            LoadWaiters();
-            dgWaiters.ItemsSource = waiters;
-            LoadTables();
-            dgTables.ItemsSource=tables;
-            LoadMenuItems();
-            dgItems.ItemsSource=menuItems;
-            LoadOrders();
+            LoadWaiters();           
+            LoadTables();      
+            LoadMenuItems();         
+            LoadOrders();            
+        }
+
+        public void LoadOrders()
+        {
+            orders = orderService.GetOredersByDate(DateTime.Now);
+            cbOrders.ItemsSource = null;
             cbOrders.ItemsSource = orders.Select(o => o.Date);
         }
 
-        private void LoadOrders()
+        public void LoadMenuItems()
         {
-            orders = orderService.GetOredersByDate(DateTime.Now);
+            menuItems = menuItemService.GetAllMenuItems();
+            dgItems.ItemsSource = null;
+            dgItems.ItemsSource = menuItems;
         }
 
-        private void LoadMenuItems()
+        public void LoadTables()
         {
-            menuItems=menuItemService.GetAllMenuItems();
+            tables = tableService.GetAllTables();
+            dgTables.ItemsSource = null;
+            dgTables.ItemsSource = tables;
         }
 
-        private void LoadTables()
-        {
-            tables=tableService.GetAllTablesWithWaiters();
-        }
-
-        private void LoadWaiters()
+        public void LoadWaiters()
         {
             waiters = waiterService.GetAllWaiters();
+            dgWaiters.ItemsSource = null;
+            dgWaiters.ItemsSource = waiters;
         }
 
         private void bNewTable_Click(object sender, RoutedEventArgs e)
@@ -150,6 +174,14 @@ namespace Cafe
             deleteOrderWindow.Owner = Application.Current.MainWindow;
             deleteOrderWindow.WindowStartupLocation = WindowStartupLocation.CenterOwner;
             deleteOrderWindow.ShowDialog();
+        }
+
+        private void bNewOrder_Click(object sender, RoutedEventArgs e)
+        {
+            AddNewOrderWindow addNewOrderWindow = new();
+            addNewOrderWindow.Owner = Application.Current.MainWindow;
+            addNewOrderWindow.WindowStartupLocation= WindowStartupLocation.CenterOwner; 
+            addNewOrderWindow.ShowDialog(); 
         }
     }
 }

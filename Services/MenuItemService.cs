@@ -1,13 +1,8 @@
-﻿using Cafe.Models;
-using Cafe.Entities;
-using Microsoft.EntityFrameworkCore;
+﻿using Cafe.Entities;
+using Cafe.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Controls;
-using MenuItem = Cafe.Entities.MenuItem;
 
 namespace Cafe.Services
 {
@@ -19,20 +14,16 @@ namespace Cafe.Services
             _dbContext = new CafeDbContext();
         }
 
-        public List<MenuItemModel> GetAllMenuItems()
-        {
-            var items = _dbContext.MenuItems;
-
-            return items.Select(i => new MenuItemModel
+        public List<MenuItemModel> GetAllMenuItems() =>
+            _dbContext.MenuItems.Select(i => new MenuItemModel
             {
                 Id = i.Id,
                 Name = i.Name,
                 Price = i.Price
 
             }).ToList();
-        }
 
-        public void AddItemtoDb(MenuItemModel menuItemModel)
+        public void AddItemToDb(MenuItemModel menuItemModel)
         {
             var menuItem = new MenuItem
             {
@@ -41,11 +32,12 @@ namespace Cafe.Services
             };
 
             _dbContext.MenuItems.Add(menuItem);
-
             _dbContext.SaveChanges();
         }
 
-        public void DeleteItemFromDn(int itemId)
+        public bool DoesExist(int id) => _dbContext.MenuItems.Any(mi => mi.Id == id);
+
+        public void RemoveMenuItemFromDb(int itemId)
         {
             var itemToRemove = _dbContext.MenuItems.FirstOrDefault(item => item.Id == itemId);
 
@@ -54,6 +46,25 @@ namespace Cafe.Services
                 _dbContext.MenuItems.Remove(itemToRemove);
                 _dbContext.SaveChanges();
             }
+        }       
+
+        public MenuItemModel GetDishById(int id)
+        {
+            var menuItem = _dbContext.MenuItems.FirstOrDefault(mi => mi.Id == id);
+
+            if (menuItem != null)
+                return null;
+
+            return new MenuItemModel { Id = id, Name = menuItem.Name, Price = menuItem.Price };
         }
+
+        public List<MenuItemModel> GetAllAvailiableMenuItems() =>
+         _dbContext.MenuItems.Where(i => i.IsAvailiable).Select(i => new MenuItemModel
+         {
+             Id = i.Id,
+             Name = i.Name,
+             Price = i.Price
+
+         }).ToList();
     }
 }

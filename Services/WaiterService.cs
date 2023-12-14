@@ -1,10 +1,7 @@
 ﻿using Cafe.Entities;
 using Cafe.Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Cafe.Services
 {
@@ -17,35 +14,39 @@ namespace Cafe.Services
             _dbContext = new CafeDbContext();
         }
 
-        public List<WaiterModel> GetAllWaiters()
-        {
-            var waiters = _dbContext.Waiters;
-
-            return waiters.Select(w => new WaiterModel
-            {
-                Name = w.Name,
-                Surname = w.Surname,
-                Table = w.Table == null ? null : new TableModel
-                {
-                    Id = w.Table.Id,
-                    Status = w.Table.Status,
-
-                },
+        public List<WaiterModel> GetAllWaiters() =>
+             _dbContext.Waiters.Select(w => new WaiterModel
+             {
+                 Id = w.Id, 
+                 Name = w.Name,
+                 Surname = w.Surname,                 
             }).ToList();
-        }
+
+
+        public bool DoesExist(int id) => _dbContext.Waiters.Any(mi => mi.Id == id);
 
         public void AddWaiterToDb(WaiterModel waiterModel)
         {
             var waiter = new Waiter
             {
-                Id=waiterModel.Id,
-                Name=waiterModel.Name,
-                Surname=waiterModel.Surname,
-                TableId=waiterModel.Table.Id
+                Id = waiterModel.Id,
+                Name = waiterModel.Name,
+                Surname = waiterModel.Surname
             };
 
             _dbContext.Waiters.Add(waiter);
             _dbContext.SaveChanges();   
+        }
+
+        public WaiterModel GetWaiterById(int id)
+        {
+            var dbWaiter = _dbContext.Waiters.FirstOrDefault(t => t.Id == id);
+            if (dbWaiter == null)
+            {
+                return null;
+            }
+
+            return new WaiterModel { Id = dbWaiter.Id, Name = dbWaiter.Name, Surname = dbWaiter.Surname };
         }
 
         public void DeleteWaiterFromDb(int waiterId)

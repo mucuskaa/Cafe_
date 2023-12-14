@@ -1,9 +1,5 @@
-﻿using Cafe.Entities;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Cafe.Models
 {
@@ -15,5 +11,7 @@ namespace Cafe.Models
         public TableModel? Table { get; set; }
 
         public WaiterModel? Waiter { get; set; }
+
+        public List<OrderPositionModel>? Positions { get; set; }  
     }
 }
